@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { CartProvider } from "@/contexts/cart-context"
@@ -8,33 +7,41 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CartSidebar } from "@/components/cart-sidebar"
 import { Suspense } from "react"
+import { getStoreConfig } from "@/lib/store-config"
+import { getFontScheme } from "@/lib/font-schemes"
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-})
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getStoreConfig()
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
-
-export const metadata: Metadata = {
-  title: "Boutique Elegance - Moda y Estilo",
-  description: "Tienda online de moda exclusiva",
-  generator: "v0.app",
+  return {
+    title: config.seo.title,
+    description: config.seo.description,
+    keywords: config.seo.keywords.join(", "),
+    openGraph: {
+      title: config.seo.title,
+      description: config.seo.description,
+      images: [config.branding.logo],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: config.seo.title,
+      description: config.seo.description,
+      images: [config.branding.logo],
+    },
+  }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const config = await getStoreConfig()
+  const fontScheme = getFontScheme(config.typography.fontScheme)
+
   return (
     <html lang="es">
-      <body className={`font-sans ${inter.variable} ${playfair.variable}`}>
+      <body className={`${fontScheme.body.variable} ${fontScheme.heading.variable}`}>
         <CartProvider>
           <Suspense fallback={<div>Loading...</div>}>
             <Header />
