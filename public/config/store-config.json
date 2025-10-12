@@ -6,12 +6,12 @@
       "instagram": "",
       "facebook": ""
     },
-    "name": "el disco",
-    "phone": "2643171515",
-    "email": "maticamisay99@gmail.com",
+    "name": "El Disco",
     "description": "",
-    "address": "",
-    "whatsapp": ""
+    "address": "Catamarca 105 Sur, San Juan",
+    "phone": "2643171515",
+    "whatsapp": "+5492643171515",
+    "email": "maticamisay99@gmail.com"
   },
   "branding": {
     "logo": "",
@@ -35,8 +35,8 @@
     "currencySymbol": "$"
   },
   "seo": {
-    "title": "",
-    "description": "",
+    "title": "el disco - Tienda Online",
+    "description": "Encuentra los mejores productos en nuestra tienda online",
     "keywords": []
   },
   "analytics": {}
