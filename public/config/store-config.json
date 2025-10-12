@@ -1,6 +1,6 @@
 {
   "storeId": "68e03cde5f3018eaef75750b",
-  "apiUrl": "http://localhost:5000",
+  "apiUrl": "https://middas-backend-v10-25-production.up.railway.app",
   "business": {
     "socialMedia": {
       "instagram": "",
