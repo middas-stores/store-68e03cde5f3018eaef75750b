@@ -1,0 +1,43 @@
+{
+  "storeId": "68e03cde5f3018eaef75750b",
+  "apiUrl": "http://localhost:5000",
+  "business": {
+    "socialMedia": {
+      "instagram": "",
+      "facebook": ""
+    },
+    "name": "el disco",
+    "phone": "2643171515",
+    "email": "maticamisay99@gmail.com",
+    "description": "",
+    "address": "",
+    "whatsapp": ""
+  },
+  "branding": {
+    "logo": "",
+    "banner": "",
+    "bannerTitle": "¡Bienvenido a nuestra tienda!",
+    "bannerSubtitle": "Encuentra los mejores productos",
+    "colorScheme": {
+      "name": "elegant",
+      "primary": "#000000",
+      "secondary": "#D4AF37",
+      "accent": "#8B7355",
+      "background": "#F5F5F5"
+    }
+  },
+  "settings": {
+    "showStock": true,
+    "allowOrders": true,
+    "orderMethod": "whatsapp",
+    "showPrices": true,
+    "currency": "ARS",
+    "currencySymbol": "$"
+  },
+  "seo": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "analytics": {}
+}
