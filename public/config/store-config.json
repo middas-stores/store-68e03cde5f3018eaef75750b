@@ -19,11 +19,11 @@
     "bannerTitle": "¡Bienvenido a nuestra tienda!",
     "bannerSubtitle": "Encuentra los mejores productos",
     "colorScheme": {
-      "name": "elegant",
-      "primary": "#000000",
-      "secondary": "#D4AF37",
-      "accent": "#8B7355",
-      "background": "#F5F5F5"
+      "name": "fresh",
+      "primary": "#0066CC",
+      "secondary": "#FFFFFF",
+      "accent": "#00B4D8",
+      "background": "#F0F7FF"
     }
   },
   "settings": {
@@ -35,8 +35,8 @@
     "currencySymbol": "$"
   },
   "seo": {
-    "title": "el disco - Tienda Online",
-    "description": "Encuentra los mejores productos en nuestra tienda online",
+    "title": "El Disco Insumos",
+    "description": "Comercio especializado en la venta de computación, insumos informáticos y de impresión. Amplia variedad de productos, con más de 20 años en la provincia de San ",
     "keywords": []
   },
   "analytics": {}
