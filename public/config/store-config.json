@@ -3,11 +3,11 @@
   "apiUrl": "https://middas-backend-v10-25-production.up.railway.app",
   "business": {
     "socialMedia": {
-      "instagram": "",
-      "facebook": ""
+      "instagram": "https://www.instagram.com/eldiscoinsumos",
+      "facebook": "https://www.facebook.com/eldiscoinsumosinformaticos"
     },
     "name": "El Disco",
-    "description": "",
+    "description": "Comercio especializado en la venta de computación, insumos informáticos y de impresión. Amplia variedad de productos, con más de 20 años en la provincia de San Juan.",
     "address": "Catamarca 105 Sur, San Juan",
     "phone": "2643171515",
     "whatsapp": "+5492643171515",
