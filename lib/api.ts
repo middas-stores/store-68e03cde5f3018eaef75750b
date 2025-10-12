@@ -6,10 +6,10 @@ export interface ApiProduct {
   description?: string
   price: number
   image?: {
-    signedUrl?: string
+    url?: string
     thumbnails?: {
-      smallSignedUrl?: string
-      mediumSignedUrl?: string
+      small?: string
+      medium?: string
     }
   }
   category?: {
@@ -38,7 +38,7 @@ export async function getProducts(apiUrl: string, storeId: string): Promise<Prod
         name: product.name,
         description: product.description || product.storeDescription || "",
         price: product.price || 0,
-        image: product.image?.signedUrl || product.image?.thumbnails?.mediumSignedUrl || "/placeholder.svg?height=400&width=400",
+        image: product.image?.url || product.image?.thumbnails?.medium || "/placeholder.svg?height=400&width=400",
         category: product.category?.name || "Sin categoría",
         stock: product.stock || 0,
       }))
