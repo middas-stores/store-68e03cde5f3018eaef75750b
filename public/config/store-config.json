@@ -1,6 +1,6 @@
 {
   "storeId": "68e03cde5f3018eaef75750b",
-  "apiUrl": "https://middas-backend-v10-25-production.up.railway.app",
+  "apiUrl": "http://localhost:5000",
   "business": {
     "socialMedia": {
       "instagram": "",
@@ -14,7 +14,7 @@
     "email": "maticamisay99@gmail.com"
   },
   "branding": {
-    "logo": "",
+    "logo": "https://middas.s3.amazonaws.com/store-logos/68e03cde5f3018eaef75750b/8468a63e25c7394e2f1467c5e39229a2.png",
     "banner": "",
     "bannerTitle": "¡Bienvenido a nuestra tienda!",
     "bannerSubtitle": "Encuentra los mejores productos",
