@@ -24,6 +24,9 @@
       "secondary": "#FFFFFF",
       "accent": "#00B4D8",
       "background": "#F0F7FF"
+    },
+    "typography": {
+      "fontScheme": "modern"
     }
   },
   "settings": {
