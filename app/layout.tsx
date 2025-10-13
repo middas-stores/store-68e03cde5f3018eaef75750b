@@ -37,7 +37,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const config = await getStoreConfig()
-  const fontScheme = getFontScheme(config.typography.fontScheme)
+  const fontScheme = getFontScheme(config.branding.typography.fontScheme)
 
   return (
     <html lang="es">
