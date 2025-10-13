@@ -35,6 +35,9 @@ export interface StoreConfig {
       accent: string
       background: string
     }
+    typography: {
+      fontScheme: "elegant" | "modern" | "classic"
+    }
   }
   settings: {
     showStock: boolean
@@ -48,9 +51,6 @@ export interface StoreConfig {
     title: string
     description: string
     keywords: string[]
-  }
-  typography: {
-    fontScheme: "elegant" | "modern" | "classic"
   }
   analytics: Record<string, unknown>
 }
