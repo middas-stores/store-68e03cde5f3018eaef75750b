@@ -37,6 +37,11 @@ export interface StoreConfig {
     }
     typography: {
       fontScheme: "elegant" | "modern" | "classic"
+      colors?: {
+        heading?: string
+        body?: string
+        muted?: string
+      }
     }
   }
   settings: {
