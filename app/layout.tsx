@@ -6,6 +6,7 @@ import { CartProvider } from "@/contexts/cart-context"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CartSidebar } from "@/components/cart-sidebar"
+import { DynamicColorProvider } from "@/components/dynamic-color-provider"
 import { Suspense } from "react"
 import { getStoreConfig } from "@/lib/store-config"
 import { getFontScheme } from "@/lib/font-schemes"
@@ -43,6 +44,7 @@ export default async function RootLayout({
     <html lang="es">
       <body className={`${fontScheme.body.variable} ${fontScheme.heading.variable}`}>
         <CartProvider>
+          <DynamicColorProvider config={config} />
           <Suspense fallback={<div>Loading...</div>}>
             <Header />
             <main>{children}</main>
