@@ -18,7 +18,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <h3 className="mb-4 text-lg font-semibold">{config.business.name}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{config.business.description}</p>
@@ -65,6 +65,18 @@ export function Footer() {
                   <Facebook className="h-5 w-5" />
                 </a>
               )}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">Sistema</h3>
+            <div className="space-y-2">
+              <a
+                href="/status"
+                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Estado del Sistema
+              </a>
             </div>
           </div>
         </div>
