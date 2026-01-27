@@ -9,6 +9,23 @@ export interface Product {
   stock: number
 }
 
+export interface BusinessHoursShift {
+  open: string
+  close: string
+}
+
+export interface DaySchedule {
+  dayOfWeek: number
+  isOpen: boolean
+  shifts: BusinessHoursShift[]
+}
+
+export interface BusinessHours {
+  enabled: boolean
+  timezone?: string
+  schedule: DaySchedule[]
+}
+
 export interface StoreConfig {
   storeId: string
   apiUrl: string
@@ -22,8 +39,10 @@ export interface StoreConfig {
     email: string
     description: string
     address: string
+    hasPhysicalStore?: boolean
     whatsapp: string
   }
+  businessHours?: BusinessHours
   branding: {
     logo: string
     banner: string
@@ -50,6 +69,7 @@ export interface StoreConfig {
     allowOrders: boolean
     orderMethod: string
     showPrices: boolean
+    showFloatingWhatsapp?: boolean
     currency: string
     currencySymbol: string
   }
