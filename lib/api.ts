@@ -12,7 +12,7 @@ export interface ApiProduct {
       medium?: string
     }
   }
-  category?: {
+  categoryId?: {
     _id: string
     name: string
   }
@@ -20,6 +20,11 @@ export interface ApiProduct {
   isActive?: boolean
   featured?: boolean
   storeDescription?: string
+}
+
+export interface Category {
+  _id: string
+  name: string
 }
 
 export async function getProducts(apiUrl: string, storeId: string): Promise<Product[]> {
@@ -39,7 +44,8 @@ export async function getProducts(apiUrl: string, storeId: string): Promise<Prod
         description: product.description || product.storeDescription || "",
         price: product.price || 0,
         image: product.image?.url || product.image?.thumbnails?.medium || "/placeholder.svg?height=400&width=400",
-        category: product.category?.name || "Sin categoría",
+        category: product.categoryId?.name || "Sin categoría",
+        categoryId: product.categoryId?._id,
         stock: product.stock || 0,
       }))
   } catch (error) {
@@ -54,4 +60,17 @@ export async function getFeaturedProducts(apiUrl: string, storeId: string, limit
   console.log("Fetched products:", products)
   // Retornar los primeros productos como destacados
   return products.slice(0, limit)
+}
+
+export async function getCategories(apiUrl: string, storeId: string): Promise<Category[]> {
+  try {
+    const response = await fetch(`${apiUrl}/api/public/store/${storeId}/categories`)
+    if (!response.ok) {
+      throw new Error("Failed to load categories")
+    }
+    return await response.json()
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+    return []
+  }
 }
