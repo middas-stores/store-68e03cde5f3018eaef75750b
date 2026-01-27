@@ -9,15 +9,16 @@ interface CartItem extends Product {
 
 interface CartContextType {
   items: CartItem[]
-  addItem: (product: Product) => void
+  addItem: (product: Product) => boolean
   removeItem: (productId: string) => void
-  updateQuantity: (productId: string, quantity: number) => void
+  updateQuantity: (productId: string, quantity: number, maxStock?: number) => void
   clearCart: () => void
   totalItems: number
   totalPrice: number
   isOpen: boolean
   openCart: () => void
   closeCart: () => void
+  getItemQuantity: (productId: string) => number
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -39,7 +40,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("cart", JSON.stringify(items))
   }, [items])
 
-  const addItem = (product: Product) => {
+  const getItemQuantity = (productId: string): number => {
+    const item = items.find((item) => item.id === productId)
+    return item?.quantity || 0
+  }
+
+  const addItem = (product: Product): boolean => {
+    const currentQuantity = getItemQuantity(product.id)
+
+    // Validar stock antes de agregar
+    if (currentQuantity >= product.stock) {
+      return false // No se pudo agregar, stock insuficiente
+    }
+
     setItems((currentItems) => {
       const existingItem = currentItems.find((item) => item.id === product.id)
       if (existingItem) {
@@ -48,18 +61,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return [...currentItems, { ...product, quantity: 1 }]
     })
     setIsOpen(true)
+    return true // Se agregó exitosamente
   }
 
   const removeItem = (productId: string) => {
     setItems((currentItems) => currentItems.filter((item) => item.id !== productId))
   }
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (productId: string, quantity: number, maxStock?: number) => {
     if (quantity <= 0) {
       removeItem(productId)
       return
     }
-    setItems((currentItems) => currentItems.map((item) => (item.id === productId ? { ...item, quantity } : item)))
+    // Validar stock si se proporciona
+    const finalQuantity = maxStock ? Math.min(quantity, maxStock) : quantity
+    setItems((currentItems) => currentItems.map((item) => (item.id === productId ? { ...item, quantity: finalQuantity } : item)))
   }
 
   const clearCart = () => {
@@ -85,6 +101,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         isOpen,
         openCart,
         closeCart,
+        getItemQuantity,
       }}
     >
       {children}
