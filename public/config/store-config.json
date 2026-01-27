@@ -33,6 +33,101 @@
       "fontScheme": "modern"
     }
   },
+  "businessHours": {
+    "enabled": true,
+    "timezone": "America/Argentina/Buenos_Aires",
+    "schedule": [
+      {
+        "dayOfWeek": 1,
+        "isOpen": true,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "13:30",
+            "_id": "69701061d71aadf5b193e923"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "_id": "69701061d71aadf5b193e924"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e922"
+      },
+      {
+        "dayOfWeek": 2,
+        "isOpen": true,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "13:00",
+            "_id": "69701061d71aadf5b193e926"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e925"
+      },
+      {
+        "dayOfWeek": 3,
+        "isOpen": true,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "_id": "69701061d71aadf5b193e928"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e927"
+      },
+      {
+        "dayOfWeek": 4,
+        "isOpen": true,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "_id": "69701061d71aadf5b193e92a"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e929"
+      },
+      {
+        "dayOfWeek": 5,
+        "isOpen": true,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "_id": "69701061d71aadf5b193e92c"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e92b"
+      },
+      {
+        "dayOfWeek": 6,
+        "isOpen": false,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "_id": "69701061d71aadf5b193e92e"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e92d"
+      },
+      {
+        "dayOfWeek": 0,
+        "isOpen": false,
+        "shifts": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "_id": "69701061d71aadf5b193e930"
+          }
+        ],
+        "_id": "69701061d71aadf5b193e92f"
+      }
+    ]
+  },
   "settings": {
     "showStock": true,
     "allowOrders": true,
