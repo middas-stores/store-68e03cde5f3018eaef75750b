@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CartSidebar } from "@/components/cart-sidebar"
 import { DynamicColorProvider } from "@/components/dynamic-color-provider"
+import { FloatingWhatsAppWrapper } from "@/components/floating-whatsapp-wrapper"
 import { Suspense } from "react"
 import { getStoreConfig } from "@/lib/store-config"
 import { getFontScheme } from "@/lib/font-schemes"
@@ -50,6 +51,7 @@ export default async function RootLayout({
             <main>{children}</main>
             <Footer />
             <CartSidebar />
+            <FloatingWhatsAppWrapper />
           </Suspense>
         </CartProvider>
         <Analytics />
