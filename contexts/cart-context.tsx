@@ -60,7 +60,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...currentItems, { ...product, quantity: 1 }]
     })
-    setIsOpen(true)
+    // No abrir el carrito automáticamente - solo mostrar toast
     return true // Se agregó exitosamente
   }
 
