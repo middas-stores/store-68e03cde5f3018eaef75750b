@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
+import { Toaster } from "sonner"
 import "./globals.css"
 import { CartProvider } from "@/contexts/cart-context"
 import { Header } from "@/components/header"
@@ -52,6 +53,16 @@ export default async function RootLayout({
             <Footer />
             <CartSidebar />
             <FloatingWhatsAppWrapper />
+            <Toaster 
+              position="bottom-right" 
+              toastOptions={{
+                style: {
+                  background: 'hsl(var(--background))',
+                  border: '1px solid hsl(var(--border))',
+                  color: 'hsl(var(--foreground))',
+                },
+              }}
+            />
           </Suspense>
         </CartProvider>
         <Analytics />

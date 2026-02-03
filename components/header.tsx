@@ -21,6 +21,9 @@ export function Header() {
   const [categories, setCategories] = useState<Category[]>([])
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [cartBounce, setCartBounce] = useState(false)
+  const prevTotalItems = useRef(totalItems)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -28,7 +31,6 @@ export function Header() {
       .then((res) => res.json())
       .then((data) => {
         setConfig(data)
-        // Cargar categorías una vez que tenemos el config
         if (data.apiUrl && data.storeId) {
           fetch(`${data.apiUrl}/api/public/store/${data.storeId}/categories`)
             .then((res) => res.json())
@@ -38,7 +40,25 @@ export function Header() {
       })
   }, [])
 
-  // Cerrar dropdown al hacer clic fuera
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Cart bounce animation when items change
+  useEffect(() => {
+    if (totalItems > prevTotalItems.current) {
+      setCartBounce(true)
+      setTimeout(() => setCartBounce(false), 300)
+    }
+    prevTotalItems.current = totalItems
+  }, [totalItems])
+
+  // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -52,58 +72,88 @@ export function Header() {
   if (!config) return null
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header 
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border' 
+          : 'bg-background/80 backdrop-blur-sm'
+      }`}
+    >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2">
-            <img src={config.branding.logo || "/placeholder.svg"} alt={config.business.name} className="h-8" />
+          <Link href="/" className="flex items-center gap-2 group">
+            <img 
+              src={config.branding.logo || "/placeholder.svg"} 
+              alt={config.business.name} 
+              className="h-8 transition-transform duration-300 group-hover:scale-105" 
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
+            <Link 
+              href="/" 
+              className="text-sm font-medium transition-colors hover:text-primary relative group"
+            >
               Inicio
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
             {categories.length > 0 && (
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary"
+                  className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary group"
                 >
                   Categorías
-                  <ChevronDown className={`h-4 w-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                  />
                 </button>
-                {isDropdownOpen && (
-                  <div className="absolute left-0 top-full mt-2 min-w-[200px] rounded-md border border-border bg-background p-2 shadow-lg">
-                    {categories.map((category) => (
-                      <Link
-                        key={category._id}
-                        href={`/productos?categoria=${category._id}`}
-                        className="block rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        {category.name}
-                      </Link>
-                    ))}
-                    <div className="my-1 border-t border-border" />
+                <div 
+                  className={`absolute left-0 top-full mt-2 min-w-[220px] rounded-xl border border-border bg-background p-2 shadow-xl transition-all duration-200 origin-top ${
+                    isDropdownOpen 
+                      ? 'opacity-100 scale-100 translate-y-0' 
+                      : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+                  }`}
+                >
+                  {categories.map((category) => (
                     <Link
-                      href="/productos"
-                      className="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                      key={category._id}
+                      href={`/productos?categoria=${category._id}`}
+                      className="block rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-muted"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Ver todos los productos
+                      {category.name}
                     </Link>
-                  </div>
-                )}
+                  ))}
+                  <div className="my-1.5 border-t border-border" />
+                  <Link
+                    href="/productos"
+                    className="block rounded-lg px-3 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Ver todos los productos →
+                  </Link>
+                </div>
               </div>
             )}
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="relative" onClick={openCart}>
+        <div className="flex items-center gap-3">
+          {/* Cart Button */}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className={`relative transition-transform duration-200 ${cartBounce ? 'scale-110' : 'scale-100'}`}
+            onClick={openCart}
+          >
             <ShoppingCart className="h-5 w-5" />
             {totalItems > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                {totalItems}
+              <span 
+                className={`absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-lg transition-transform duration-200 ${
+                  cartBounce ? 'animate-bounce' : ''
+                }`}
+              >
+                {totalItems > 99 ? '99+' : totalItems}
               </span>
             )}
           </Button>
@@ -122,22 +172,28 @@ export function Header() {
 
       {/* Mobile Menu Sheet */}
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-        <SheetContent side="left" className="w-[280px] sm:w-[320px]">
+        <SheetContent side="left" className="w-[300px] sm:w-[340px]">
           <SheetHeader className="border-b border-border pb-4">
-            <SheetTitle className="flex items-center gap-2">
-              <img src={config.branding.logo || "/placeholder.svg"} alt={config.business.name} className="h-6" />
-              <span>{config.business.name}</span>
+            <SheetTitle className="flex items-center gap-3">
+              <img 
+                src={config.branding.logo || "/placeholder.svg"} 
+                alt={config.business.name} 
+                className="h-7" 
+              />
+              <span className="font-semibold">{config.business.name}</span>
             </SheetTitle>
           </SheetHeader>
           
-          <nav className="flex flex-col gap-1 py-4">
+          <nav className="flex flex-col gap-1 py-6">
             {/* Inicio */}
             <SheetClose asChild>
               <Link 
                 href="/" 
-                className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-medium transition-colors hover:bg-muted"
+                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors hover:bg-muted"
               >
-                <Home className="h-5 w-5" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+                  <Home className="h-5 w-5 text-primary" />
+                </div>
                 Inicio
               </Link>
             </SheetClose>
@@ -146,9 +202,11 @@ export function Header() {
             <SheetClose asChild>
               <Link 
                 href="/productos" 
-                className="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-medium transition-colors hover:bg-muted"
+                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors hover:bg-muted"
               >
-                <Package className="h-5 w-5" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+                  <Package className="h-5 w-5 text-primary" />
+                </div>
                 Todos los productos
               </Link>
             </SheetClose>
@@ -156,8 +214,8 @@ export function Header() {
             {/* Categorías */}
             {categories.length > 0 && (
               <>
-                <div className="my-2 border-t border-border" />
-                <div className="px-3 py-2 text-xs font-semibold uppercase text-muted-foreground flex items-center gap-2">
+                <div className="my-3 border-t border-border" />
+                <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                   <Grid3X3 className="h-4 w-4" />
                   Categorías
                 </div>
@@ -165,8 +223,9 @@ export function Header() {
                   <SheetClose asChild key={category._id}>
                     <Link
                       href={`/productos?categoria=${category._id}`}
-                      className="flex items-center gap-3 rounded-md px-3 py-2.5 pl-6 text-sm transition-colors hover:bg-muted"
+                      className="flex items-center gap-3 rounded-xl px-4 py-2.5 pl-6 text-sm transition-colors hover:bg-muted"
                     >
+                      <span className="w-2 h-2 rounded-full bg-primary/40" />
                       {category.name}
                     </Link>
                   </SheetClose>
@@ -176,12 +235,18 @@ export function Header() {
           </nav>
 
           {/* Footer del menú móvil */}
-          <div className="absolute bottom-0 left-0 right-0 border-t border-border p-4">
-            <div className="text-xs text-muted-foreground text-center">
+          <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-muted/30 p-4">
+            <div className="text-sm text-center space-y-1">
               {config.business.phone && (
-                <a href={`tel:${config.business.phone}`} className="hover:text-primary">
+                <a 
+                  href={`tel:${config.business.phone}`} 
+                  className="block font-medium text-primary hover:underline"
+                >
                   📞 {config.business.phone}
                 </a>
+              )}
+              {config.business.email && (
+                <p className="text-xs text-muted-foreground">{config.business.email}</p>
               )}
             </div>
           </div>
