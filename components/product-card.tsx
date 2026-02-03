@@ -114,32 +114,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           }`}
         />
         {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        
-        {/* Quick add button on hover */}
-        <div className="absolute bottom-3 left-3 right-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-          <Button 
-            className="w-full backdrop-blur-sm bg-white/90 text-black hover:bg-white shadow-lg"
-            onClick={handleAddToCart}
-            disabled={isOutOfStock || isMaxStock || isAdding}
-          >
-            {isAdding ? (
-              <>
-                <Check className="mr-2 h-4 w-4 animate-scale-in" />
-                ¡Agregado!
-              </>
-            ) : isOutOfStock ? (
-              "Sin stock"
-            ) : isMaxStock ? (
-              "Máximo alcanzado"
-            ) : (
-              <>
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Agregar
-              </>
-            )}
-          </Button>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
 
       <CardContent className="p-4">
