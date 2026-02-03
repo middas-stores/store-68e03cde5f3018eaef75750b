@@ -109,12 +109,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           onLoad={() => setImageLoaded(true)}
-          className={`h-full w-full object-cover transition-all duration-500 group-hover:scale-110 ${
+          className={`h-full w-full object-contain transition-transform duration-300 group-hover:scale-105 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
-        {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
 
       <CardContent className="p-4">
