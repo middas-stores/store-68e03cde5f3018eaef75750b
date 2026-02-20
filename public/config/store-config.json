@@ -6,13 +6,13 @@
       "instagram": "https://www.instagram.com/eldiscoinsumos",
       "facebook": "https://www.facebook.com/eldiscoinsumosinformaticos"
     },
-    "name": "El Disco",
+    "name": "El Disco Insumos",
     "description": "Comercio especializado en la venta de computación, insumos informáticos y de impresión. Amplia variedad de productos, con más de 20 años en la provincia de San Juan.",
     "address": "Catamarca 105 Sur, San Juan",
-    "hasPhysicalStore": false,
-    "phone": "2643171515",
-    "whatsapp": "+5492643171515",
-    "email": "maticamisay99@gmail.com"
+    "hasPhysicalStore": true,
+    "phone": "2646286841",
+    "whatsapp": "+5492646286841",
+    "email": "eldiscoinsumos@gmail.com"
   },
   "branding": {
     "logo": "https://middas.s3.amazonaws.com/store-logos/68e03cde5f3018eaef75750b/2c73ab4affeb86efbf0b15fca6a4235a.png",
@@ -42,12 +42,12 @@
         "isOpen": true,
         "shifts": [
           {
-            "open": "09:00",
+            "open": "08:30",
             "close": "13:30",
             "_id": "69701061d71aadf5b193e923"
           },
           {
-            "open": "17:00",
+            "open": "16:30",
             "close": "21:00",
             "_id": "69701061d71aadf5b193e924"
           }
@@ -59,9 +59,14 @@
         "isOpen": true,
         "shifts": [
           {
-            "open": "09:00",
-            "close": "13:00",
-            "_id": "69701061d71aadf5b193e926"
+            "open": "08:30",
+            "close": "13:30",
+            "_id": "69701061d71aadf5b193e923"
+          },
+          {
+            "open": "16:30",
+            "close": "21:00",
+            "_id": "69701061d71aadf5b193e924"
           }
         ],
         "_id": "69701061d71aadf5b193e925"
@@ -71,9 +76,14 @@
         "isOpen": true,
         "shifts": [
           {
-            "open": "09:00",
-            "close": "18:00",
-            "_id": "69701061d71aadf5b193e928"
+            "open": "08:30",
+            "close": "13:30",
+            "_id": "69701061d71aadf5b193e923"
+          },
+          {
+            "open": "16:30",
+            "close": "21:00",
+            "_id": "69701061d71aadf5b193e924"
           }
         ],
         "_id": "69701061d71aadf5b193e927"
@@ -83,9 +93,14 @@
         "isOpen": true,
         "shifts": [
           {
-            "open": "09:00",
-            "close": "18:00",
-            "_id": "69701061d71aadf5b193e92a"
+            "open": "08:30",
+            "close": "13:30",
+            "_id": "69701061d71aadf5b193e923"
+          },
+          {
+            "open": "16:30",
+            "close": "21:00",
+            "_id": "69701061d71aadf5b193e924"
           }
         ],
         "_id": "69701061d71aadf5b193e929"
@@ -95,21 +110,31 @@
         "isOpen": true,
         "shifts": [
           {
-            "open": "09:00",
-            "close": "18:00",
-            "_id": "69701061d71aadf5b193e92c"
+            "open": "08:30",
+            "close": "13:30",
+            "_id": "69701061d71aadf5b193e923"
+          },
+          {
+            "open": "16:30",
+            "close": "21:00",
+            "_id": "69701061d71aadf5b193e924"
           }
         ],
         "_id": "69701061d71aadf5b193e92b"
       },
       {
         "dayOfWeek": 6,
-        "isOpen": false,
+        "isOpen": true,
         "shifts": [
           {
             "open": "09:00",
-            "close": "18:00",
+            "close": "13:30",
             "_id": "69701061d71aadf5b193e92e"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "_id": "699765e3c05c83d8ec8110b5"
           }
         ],
         "_id": "69701061d71aadf5b193e92d"
