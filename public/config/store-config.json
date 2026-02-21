@@ -156,7 +156,7 @@
   "settings": {
     "showStock": true,
     "allowOrders": true,
-    "orderMethod": "whatsapp",
+    "orderMethod": "quote",
     "showPrices": true,
     "showFloatingWhatsapp": true,
     "currency": "ARS",
