@@ -162,6 +162,36 @@
     "currency": "ARS",
     "currencySymbol": "$"
   },
+  "paymentMethods": {
+    "transfer": {
+      "enabled": true,
+      "bankName": "Mercado Pago",
+      "cbu": "0000003100032409746281",
+      "alias": "eldisco.insumos",
+      "holder": "SANDRA PATRICIA PONCE"
+    },
+    "cash": {
+      "enabled": true,
+      "instructions": "Pagás al retirar / recibir tu pedido"
+    },
+    "mercadopago": {
+      "enabled": false,
+      "accessToken": ""
+    }
+  },
+  "shippingMethods": {
+    "pickup": {
+      "enabled": true,
+      "instructions": "Retirá en el local / a convenir con el vendedor"
+    },
+    "delivery": {
+      "enabled": true,
+      "cost": 5000,
+      "freeAbove": 0,
+      "zones": "",
+      "estimatedTime": ""
+    }
+  },
   "seo": {
     "title": "El Disco Insumos",
     "description": "Comercio especializado en la venta de computación, insumos informáticos y de impresión. Amplia variedad de productos, con más de 20 años en la provincia de San ",
