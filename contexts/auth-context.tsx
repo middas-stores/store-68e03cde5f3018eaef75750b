@@ -11,6 +11,7 @@ interface StoreCustomer {
   address?: string
   totalOrders?: number
   totalSpent?: number
+  customerType?: 'minorista' | 'mayorista'
 }
 
 interface AuthContextType {
