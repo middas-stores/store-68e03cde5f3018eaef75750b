@@ -15,6 +15,10 @@ export interface Product {
   image: string
   category: string
   categoryId?: string
+  subcategory?: string
+  subcategoryId?: string
+  brand?: string
+  brandId?: string
   stock: number
   // Campos para productos agrupados (variantes)
   isGroup?: boolean

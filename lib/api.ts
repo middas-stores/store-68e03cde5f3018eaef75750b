@@ -31,6 +31,14 @@ export interface ApiProduct {
     _id: string
     name: string
   }
+  brandId?: {
+    _id: string
+    name: string
+  }
+  subcategoryId?: {
+    _id: string
+    name: string
+  }
   stock: number
   isActive?: boolean
   featured?: boolean
@@ -71,6 +79,10 @@ export async function getProducts(apiUrl: string, storeId: string): Promise<Prod
       image: getImageUrl(product.image),
       category: product.categoryId?.name || "Sin categoría",
       categoryId: product.categoryId?._id,
+      subcategory: product.subcategoryId?.name,
+      subcategoryId: product.subcategoryId?._id,
+      brand: product.brandId?.name,
+      brandId: product.brandId?._id,
       stock: product.stock || 0,
       // Campos de variantes
       isGroup: product.isGroup || false,
